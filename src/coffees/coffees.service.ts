@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { Event } from 'src/events/entities/event.entity';
-import { Connection, getConnection, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
@@ -20,7 +20,7 @@ export class CoffeesService {
     private readonly configService: ConfigService,
   ) {
     const databaseName = this.configService.get<string>(
-      'DATABASE_NAME',
+      'database.port',
       'postgres',
     );
     console.log(databaseName);
